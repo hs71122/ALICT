@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import org.freethemalloc.comman.LessonGenerator;
-import org.freethemalloc.comman.Person;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,6 @@ public class AlIct extends AppCompatActivity {
 
     private Toolbar toolbar;
     RecyclerView rv ;
-    private List<Person> persons;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,11 +32,6 @@ public class AlIct extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setup(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
-
-        persons = new ArrayList<>();
-        persons.add(new Person("Emma Wilson", "23 years old", R.drawable.car_icon));
-        persons.add(new Person("Lavery Maiss", "25 years old", R.drawable.car_icon_1));
-        persons.add(new Person("Lillie Watts", "35 years old", R.drawable.car_icon_2));
 
         List<String> list = new ArrayList<String>();
         list.add("Lesson");

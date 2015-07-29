@@ -43,13 +43,16 @@ public class LessonGenerator extends AppCompatActivity {
     private void addViews(LinkedHashMap map){
         Set set = map.entrySet();
         Iterator iterator = set.iterator();
-        while(iterator.hasNext()) {
-            Map.Entry entry = (Map.Entry)iterator.next();
-            contentLayout.addView(textViewGenerator((HashMap)entry.getValue(), (int) entry.getKey()));//need to modify
+        Map.Entry entry = (Map.Entry)iterator.next();
+        Set valueSet = ((HashMap)entry.getValue()).entrySet();
+        Iterator valueIterator = valueSet.iterator();
+        while(valueIterator.hasNext()){
+            Map.Entry valueEntry = (Map.Entry)valueIterator.next();
+            contentLayout.addView(textViewGenerator(valueEntry.getValue().toString(), (int) valueEntry.getKey()));//need to modify
         }
     }
 
-    private TextView textViewGenerator(HashMap description, int size){
+    private TextView textViewGenerator(String description, int size){
         TextView textView = new TextView(this);
         Typeface font = Typeface.createFromAsset(getAssets(), "iskoolaPota.ttf");
         textView.setTypeface(font);
