@@ -13,6 +13,7 @@ import org.freethemalloc.lessons.Lesson;
 
 import android.widget.LinearLayout.LayoutParams;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -44,11 +45,11 @@ public class LessonGenerator extends AppCompatActivity {
         Iterator iterator = set.iterator();
         while(iterator.hasNext()) {
             Map.Entry entry = (Map.Entry)iterator.next();
-            contentLayout.addView(textViewGenerator(entry.getValue().toString(), (int) entry.getKey()));
+            contentLayout.addView(textViewGenerator((HashMap)entry.getValue(), (int) entry.getKey()));//need to modify
         }
     }
 
-    private TextView textViewGenerator(String description, int size){
+    private TextView textViewGenerator(HashMap description, int size){
         TextView textView = new TextView(this);
         Typeface font = Typeface.createFromAsset(getAssets(), "iskoolaPota.ttf");
         textView.setTypeface(font);
@@ -69,7 +70,7 @@ public class LessonGenerator extends AppCompatActivity {
             textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
         }
         lparams.setMargins(0,0,0,5);
-        textView.setText(description);
+        //textView.setText(description);
         textView.setTextSize(size);
 
         textView.setLayoutParams(lparams);
