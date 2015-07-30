@@ -41,7 +41,6 @@ public class AlIct extends AppCompatActivity {
         rv = (RecyclerView)findViewById(R.id.rv);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
-        //RVAdapter adapter = new RVAdapter(this,persons);
         MenuAdapter adapter = new MenuAdapter(this,list);
         rv.setAdapter(adapter);
     }
