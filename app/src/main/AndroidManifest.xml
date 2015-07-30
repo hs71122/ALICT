@@ -10,7 +10,6 @@
         <activity
             android:name=".AlIct"
             android:label="@string/app_name" >
-
         </activity>
         <activity
             android:name=".CardActivity"
@@ -19,6 +18,10 @@
         <activity
             android:name="org.freethemalloc.comman.LessonGenerator"
             android:label="@string/Lesson01" >
+        </activity>
+        <activity
+            android:name=".Test"
+            android:label="@string/title_activity_test" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
