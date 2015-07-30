@@ -4,8 +4,11 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.freethemalloc.alict.R;
@@ -25,7 +28,6 @@ import java.util.Set;
 public class LessonGenerator extends AppCompatActivity {
     private Toolbar toolbar;
     private LinearLayout contentLayout;
-    private LayoutParams lparams;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,7 @@ public class LessonGenerator extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(true);
-        lparams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+
         contentLayout = (LinearLayout)findViewById(R.id.lesson_generator_content);
         addViews(Lesson.getLesson01());
     }
@@ -43,13 +45,30 @@ public class LessonGenerator extends AppCompatActivity {
     private void addViews(LinkedHashMap map){
         Set set = map.entrySet();
         Iterator iterator = set.iterator();
-        Map.Entry entry = (Map.Entry)iterator.next();
-        Set valueSet = ((HashMap)entry.getValue()).entrySet();
-        Iterator valueIterator = valueSet.iterator();
-        while(valueIterator.hasNext()){
-            Map.Entry valueEntry = (Map.Entry)valueIterator.next();
-            contentLayout.addView(textViewGenerator(valueEntry.getValue().toString(), (int) valueEntry.getKey()));//need to modify
+        while(iterator.hasNext()) {
+            Map.Entry entry = (Map.Entry) iterator.next();
+            Set valueSet = ((HashMap) entry.getValue()).entrySet();
+            Iterator valueIterator = valueSet.iterator();
+            while (valueIterator.hasNext()) {
+                Map.Entry valueEntry = (Map.Entry) valueIterator.next();
+                if (((int) valueEntry.getKey()) != Lesson.IMAGE) {
+                    contentLayout.addView(textViewGenerator(valueEntry.getValue().toString(), (int) valueEntry.getKey()));
+                } else {
+                    contentLayout.addView(imageViewGenerator(valueEntry.getValue().toString()));
+                }
+            }
         }
+    }
+
+    private ImageView imageViewGenerator(String image) {
+
+        ImageView imageView = new ImageView(this);
+        imageView.setImageResource(Integer.parseInt(image));
+        LayoutParams lparams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        lparams.setMargins(0,0,0,0);
+        imageView.setLayoutParams(lparams);
+        imageView.setAdjustViewBounds(true);
+        return imageView;
     }
 
     private TextView textViewGenerator(String description, int size){
@@ -71,11 +90,14 @@ public class LessonGenerator extends AppCompatActivity {
         }else if(size == Lesson.DESCRIPTION){
             textView.setTextColor(getResources().getColor(R.color.HThemeFontDescription));
             textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
+        }else if(size == Lesson.DESCRIPTION_LIST){
+            textView.setTextColor(getResources().getColor(R.color.HThemeFontDescriptionList));
+            textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
         }
-        lparams.setMargins(0,0,0,5);
-        //textView.setText(description);
+        textView.setText(description);
         textView.setTextSize(size);
-
+        LayoutParams lparams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        lparams.setMargins(0, 0, 0, 5);
         textView.setLayoutParams(lparams);
         return textView;
     }
