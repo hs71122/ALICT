@@ -3,11 +3,10 @@ package org.freethemalloc.comman;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -39,68 +38,10 @@ public class LessonGenerator extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
         contentLayout = (LinearLayout)findViewById(R.id.lesson_generator_content);
-        addViews(Lesson.getLesson01());
+        LessonLayoutGenerator layoutGenerator = new LessonLayoutGenerator(contentLayout,this);
+        layoutGenerator.generate(Lesson.getLesson01());
     }
 
-    private void addViews(LinkedHashMap map){
-        Set set = map.entrySet();
-        Iterator iterator = set.iterator();
-        while(iterator.hasNext()) {
-            Map.Entry entry = (Map.Entry) iterator.next();
-            Set valueSet = ((HashMap) entry.getValue()).entrySet();
-            Iterator valueIterator = valueSet.iterator();
-            while (valueIterator.hasNext()) {
-                Map.Entry valueEntry = (Map.Entry) valueIterator.next();
-                if (((int) valueEntry.getKey()) != Lesson.IMAGE) {
-                    contentLayout.addView(textViewGenerator(valueEntry.getValue().toString(), (int) valueEntry.getKey()));
-                } else {
-                    contentLayout.addView(imageViewGenerator(valueEntry.getValue().toString()));
-                }
-            }
-        }
-    }
-
-    private ImageView imageViewGenerator(String image) {
-
-        ImageView imageView = new ImageView(this);
-        imageView.setImageResource(Integer.parseInt(image));
-        LayoutParams lparams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-        lparams.setMargins(0,0,0,0);
-        imageView.setLayoutParams(lparams);
-        imageView.setAdjustViewBounds(true);
-        return imageView;
-    }
-
-    private TextView textViewGenerator(String description, int size){
-        TextView textView = new TextView(this);
-        Typeface font = Typeface.createFromAsset(getAssets(), "iskoolaPota.ttf");
-        textView.setTypeface(font);
-        if (size == Lesson.HEADER_LEVEL_1){
-            textView.setTextColor(getResources().getColor(R.color.HThemeTxtColorPrimary));
-            textView.setBackgroundColor(getResources().getColor(R.color.HThemeFontHeader_1));
-        }else if(size == Lesson.HEADER_LEVEL_2){
-            textView.setTextColor(getResources().getColor(R.color.HThemeTxtColorPrimary));
-            textView.setBackgroundColor(getResources().getColor(R.color.HThemeFontHeader_2));
-        }else if(size == Lesson.HEADER_LEVEL_3){
-            textView.setTextColor(getResources().getColor(R.color.HThemeTxtColorPrimary));
-            textView.setBackgroundColor(getResources().getColor(R.color.HThemeFontHeader_3));
-        }else if(size == Lesson.HEADER_LEVEL_4){
-            textView.setTextColor(getResources().getColor(R.color.HThemeTxtColorPrimary));
-            textView.setBackgroundColor(getResources().getColor(R.color.HThemeFontHeader_4));
-        }else if(size == Lesson.DESCRIPTION){
-            textView.setTextColor(getResources().getColor(R.color.HThemeFontDescription));
-            textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
-        }else if(size == Lesson.DESCRIPTION_LIST){
-            textView.setTextColor(getResources().getColor(R.color.HThemeFontDescriptionList));
-            textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
-        }
-        textView.setText(description);
-        textView.setTextSize(size);
-        LayoutParams lparams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-        lparams.setMargins(0, 0, 0, 5);
-        textView.setLayoutParams(lparams);
-        return textView;
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

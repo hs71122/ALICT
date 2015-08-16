@@ -1,7 +1,6 @@
 package org.freethemalloc.alict;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,8 +40,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuItem> {
     public void onBindViewHolder(MenuItem holder, int position) {
 
         holder.button.setText(menuStr.get(position));
-        holder.button.setBackgroundColor(Color.CYAN);
-        holder.button.setTextColor(Color.WHITE);
+        //holder.button.setBackgroundColor(Color.CYAN);
+        //holder.button.setTextColor(Color.WHITE);
         holder.button.setOnClickListener(clickListener);
     }
 
