@@ -81,28 +81,28 @@ public class LessonLayoutGenerator {
             textView.setTextColor(context.getResources().getColor(R.color.HThemeTxtColorPrimary));
             textView.setBackgroundColor(color);
             textView.setGravity(Gravity.CENTER_HORIZONTAL);
-            cv.setBackgroundColor(color);
+            cv.setCardBackgroundColor(color);
             cv.setCardElevation(10);
             lParams.setMargins(0, 0, 0, 5);
         }else if(size == Lesson.HEADER_LEVEL_2){
             textView.setTextColor(context.getResources().getColor(R.color.HThemeTxtColorPrimary));
             textView.setBackgroundColor(color);
             textView.setGravity(Gravity.CENTER_HORIZONTAL);
-            cv.setBackgroundColor(color);
+            cv.setCardBackgroundColor(color);
             cv.setCardElevation(5);
             lParams.setMargins(0, 0, 0, 5);
         }else if(size == Lesson.HEADER_LEVEL_3){
             textView.setTextColor(context.getResources().getColor(R.color.HThemeTxtColorPrimary));
             textView.setBackgroundColor(color);
             textView.setGravity(Gravity.CENTER_HORIZONTAL);
-            cv.setBackgroundColor(color);
+            cv.setCardBackgroundColor(color);
             cv.setCardElevation(2);
             lParams.setMargins(0, 0, 0, 5);
         }else if(size == Lesson.HEADER_LEVEL_4){
             textView.setTextColor(context.getResources().getColor(R.color.HThemeTxtColorPrimary));
             textView.setBackgroundColor(color);
             textView.setGravity(Gravity.CENTER_HORIZONTAL);
-            cv.setBackgroundColor(color);
+            cv.setCardBackgroundColor(color);
             lParams.setMargins(0, 0, 0, 5);
         }else if(size == Lesson.DESCRIPTION){
             textView.setTextColor(context.getResources().getColor(R.color.HThemeFontDescription));
