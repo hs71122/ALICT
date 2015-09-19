@@ -5,14 +5,12 @@ import android.graphics.Typeface;
 import android.support.v7.widget.CardView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import org.freethemalloc.alict.R;
-import org.freethemalloc.lessons.Lesson;
+import org.freethemalloc.lessons.Lessons;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -32,20 +30,24 @@ public class LessonLayoutGenerator {
     /**
      * Generate a card view for lessons
      *
-     * @param layout layout which is to append the created card view
      * @param context Context of the activity
      */
-    public LessonLayoutGenerator(LinearLayout layout,Context context){
-        this.container = layout;
+    public LessonLayoutGenerator(Context context){
         this.context = context;
+        container = new LinearLayout(context);
+        LinearLayout.LayoutParams layoutParam = new LinearLayout.LayoutParams(
+                                                                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                                                                LinearLayout.LayoutParams.WRAP_CONTENT);
+        container.setLayoutParams(layoutParam);
+        container.setOrientation(LinearLayout.VERTICAL);
+
     }
 
     private CardView getCardView(){
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        CardView cv = (CardView)inflater.inflate(R.layout.lesson_layout, container,false);
-        return cv;
+        return (CardView)inflater.inflate(R.layout.lesson_container_layout, container,false);
     }
-    public void generate(LinkedHashMap map){
+    public LinearLayout generate(LinkedHashMap map){
         Set set = map.entrySet();
         Iterator iterator = set.iterator();
         while(iterator.hasNext()) {
@@ -56,19 +58,16 @@ public class LessonLayoutGenerator {
                 Map.Entry valueEntry = (Map.Entry) valueIterator.next();
                 CardView cardView = getCardView();
                 LinearLayout layout = (LinearLayout)cardView.findViewById(R.id.innerLayout);
-                //cardView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                if (((int) valueEntry.getKey()) != Lesson.IMAGE) {
+                if (((int) valueEntry.getKey()) != Lessons.IMAGE) {
 
                     layout.addView(textViewGenerator(valueEntry.getValue().toString(), (int) valueEntry.getKey(),cardView));
-                    //layout.addView(cardView);
                 } else {
-                    //cardView.addView();
                     layout.addView(imageViewGenerator(valueEntry.getValue().toString()));
-                    //layout.addView(cardView);
                 }
                 container.addView(cardView);
             }
         }
+        return this.container;
     }
 
     private TextView textViewGenerator(String description, int size,CardView cv){
@@ -77,42 +76,42 @@ public class LessonLayoutGenerator {
         textView.setTypeface(font);
         LinearLayout.LayoutParams lParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         int color = context.getResources().getColor(R.color.HThemePrimaryColor);
-        if (size == Lesson.HEADER_LEVEL_1){
+        if (size == Lessons.HEADER_LEVEL_1){
             textView.setTextColor(context.getResources().getColor(R.color.HThemeTxtColorPrimary));
             textView.setBackgroundColor(color);
             textView.setGravity(Gravity.CENTER_HORIZONTAL);
             cv.setCardBackgroundColor(color);
             cv.setCardElevation(10);
             lParams.setMargins(0, 0, 0, 5);
-        }else if(size == Lesson.HEADER_LEVEL_2){
+        }else if(size == Lessons.HEADER_LEVEL_2){
             textView.setTextColor(context.getResources().getColor(R.color.HThemeTxtColorPrimary));
             textView.setBackgroundColor(color);
             textView.setGravity(Gravity.CENTER_HORIZONTAL);
             cv.setCardBackgroundColor(color);
             cv.setCardElevation(5);
             lParams.setMargins(0, 0, 0, 5);
-        }else if(size == Lesson.HEADER_LEVEL_3){
+        }else if(size == Lessons.HEADER_LEVEL_3){
             textView.setTextColor(context.getResources().getColor(R.color.HThemeTxtColorPrimary));
             textView.setBackgroundColor(color);
             textView.setGravity(Gravity.CENTER_HORIZONTAL);
             cv.setCardBackgroundColor(color);
             cv.setCardElevation(2);
             lParams.setMargins(0, 0, 0, 5);
-        }else if(size == Lesson.HEADER_LEVEL_4){
+        }else if(size == Lessons.HEADER_LEVEL_4){
             textView.setTextColor(context.getResources().getColor(R.color.HThemeTxtColorPrimary));
             textView.setBackgroundColor(color);
             textView.setGravity(Gravity.CENTER_HORIZONTAL);
             cv.setCardBackgroundColor(color);
             lParams.setMargins(0, 0, 0, 5);
-        }else if(size == Lesson.DESCRIPTION){
+        }else if(size == Lessons.DESCRIPTION){
             textView.setTextColor(context.getResources().getColor(R.color.HThemeFontDescription));
             textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
             lParams.setMargins(0, 0, 0, 5);
             textView.setPadding(5,5,5,5);
-        }else if(size == Lesson.DESCRIPTION_LIST){
+        }else if(size == Lessons.DESCRIPTION_LIST){
             textView.setTextColor(context.getResources().getColor(R.color.HThemeFontDescriptionList));
             lParams.setMargins(30, 0, 0, 5);
-        }else if(size == Lesson.IMAGE_DESCRIPTION){
+        }else if(size == Lessons.IMAGE_DESCRIPTION){
             textView.setTextColor(context.getResources().getColor(R.color.HThemeFontHeader_3));
             lParams.setMargins(30, 0, 30, 5);
         }

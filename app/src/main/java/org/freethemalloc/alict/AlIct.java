@@ -12,8 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import org.freethemalloc.adapter.MenuAdapter;
-import org.freethemalloc.comman.LessonGenerator;
+import org.freethemalloc.adapter.DrawerMenuAdapter;
+import org.freethemalloc.adapter.LessonMenuAdapter;
+import org.freethemalloc.lessons.Lessons;
+import org.freethemalloc.model.MenuModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,42 +39,31 @@ public class AlIct extends AppCompatActivity {
         drawerFragment.setup(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
 
         List<String> list = new ArrayList<String>();
-        list.add("Lesson");
+        list.add("Lessons");
         list.add("Python Console");
         list.add("Database");
-        list.add("Lesson");
-        list.add("Lesson");
+        list.add("Lessons");
+        list.add("Lessons");
         rv = (RecyclerView)findViewById(R.id.rv);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        rv.setLayoutManager(llm);
-        MenuAdapter adapter = new MenuAdapter(this,list);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        rv.setLayoutManager(layoutManager);
+        DrawerMenuAdapter adapter = new DrawerMenuAdapter(this,list);
         rv.setAdapter(adapter);
+
+        RecyclerView rvLessonMenu = (RecyclerView)findViewById(R.id.rvLessonMenu);
+        LinearLayoutManager lessonMenuLayoutManager = new LinearLayoutManager(this);
+        rvLessonMenu.setLayoutManager(lessonMenuLayoutManager);
+        List<MenuModel> menuModelList = Lessons.getLessonList();
+        for(MenuModel mm : menuModelList){
+            System.out.println(mm);
+        }
+        LessonMenuAdapter lessonMenuAdapter = new LessonMenuAdapter(this,menuModelList);
+        rvLessonMenu.setAdapter(lessonMenuAdapter);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_al_ict, menu);
         return true;
-    }
-
-    public void showCards(View view){
-        startActivity(new Intent(this,LessonGenerator.class));
-        //LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        /////LessonLayoutGenerator generator = new LessonLayoutGenerator(linearLayout,this);
-        /////generator.generate(Lesson.getLesson01());
-    }
-    public void read(View view){
-      /*  AssetManager assetManager = getAssets();
-
-        InputStream in = null;
-        try
-        {
-            in = assetManager.open("example.xml");
-            LessonLayout lessonLayout = new LessonLayout(this,in);
-            in.close();
-        } catch (Exception e)
-        {
-            Log.e("tag", e.getMessage());
-        }*/
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

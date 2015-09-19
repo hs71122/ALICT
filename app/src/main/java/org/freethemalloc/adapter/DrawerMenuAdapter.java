@@ -13,21 +13,21 @@ import org.freethemalloc.alict.R;
 import java.util.List;
 
 /**
- * Created by Harshana on 7/25/2015.
+ * Created by Harshana @freethemalloc.blogspot.com on 7/25/2015.
  */
-public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuItem> {
+public class DrawerMenuAdapter extends RecyclerView.Adapter<DrawerMenuAdapter.MenuItem> {
 
     private List<String> menuStr;
     private Context context;
     private View.OnClickListener clickListener;
 
-    public MenuAdapter(Context context,List<String> menuStr){
+    public DrawerMenuAdapter(Context context, List<String> menuStr){
         this.menuStr = menuStr;
         this.context = context;
     }
     @Override
     public MenuItem onCreateViewHolder(ViewGroup parent, int viewType) {
-        View menuView = LayoutInflater.from(parent.getContext()).inflate(R.layout.menu,parent,false);
+        View menuView = LayoutInflater.from(parent.getContext()).inflate(R.layout.drawer_menu,parent,false);
         MenuItem menuItem = new MenuItem(menuView);
         clickListener = new View.OnClickListener() {
             @Override
