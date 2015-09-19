@@ -9,6 +9,16 @@ public class MenuModel {
     private String tag;
     private String image;
 
+    public MenuModel() {
+    }
+
+    public MenuModel(String title, String header, String tag, String image) {
+        this.title = title;
+        this.header = header;
+        this.tag = tag;
+        this.image = image;
+    }
+
     public String getHeader() {
         return header;
     }

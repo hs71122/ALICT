@@ -38,27 +38,27 @@ public class AlIct extends AppCompatActivity {
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setup(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
 
-        List<String> list = new ArrayList<String>();
-        list.add("Lessons");
-        list.add("Python Console");
-        list.add("Database");
-        list.add("Lessons");
-        list.add("Lessons");
         rv = (RecyclerView)findViewById(R.id.rv);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         rv.setLayoutManager(layoutManager);
-        DrawerMenuAdapter adapter = new DrawerMenuAdapter(this,list);
+        DrawerMenuAdapter adapter = new DrawerMenuAdapter(this,makeDrawerMenu());
         rv.setAdapter(adapter);
 
         RecyclerView rvLessonMenu = (RecyclerView)findViewById(R.id.rvLessonMenu);
         LinearLayoutManager lessonMenuLayoutManager = new LinearLayoutManager(this);
         rvLessonMenu.setLayoutManager(lessonMenuLayoutManager);
         List<MenuModel> menuModelList = Lessons.getLessonList();
-        for(MenuModel mm : menuModelList){
-            System.out.println(mm);
-        }
         LessonMenuAdapter lessonMenuAdapter = new LessonMenuAdapter(this,menuModelList);
         rvLessonMenu.setAdapter(lessonMenuAdapter);
+    }
+
+    private List<MenuModel> makeDrawerMenu(){
+
+        List<MenuModel> list = new ArrayList<>();
+        list.add(new MenuModel("ICT පාඩම් මාලාව","ICT Lessons","",  String.valueOf(R.drawable.lesson)));
+        list.add(new MenuModel("Python පාඩම් මාලාව","Python Lessons","",  String.valueOf(R.drawable.python_logo)));
+        list.add(new MenuModel("Database පාඩම් මාලාව","Database Lessons","",  String.valueOf(R.drawable.icon_database)));
+        return list;
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

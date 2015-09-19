@@ -15,10 +15,6 @@ import android.view.ViewGroup;
 import org.freethemalloc.alict.R;
 import org.freethemalloc.comman.C;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class NavigationDrawerFragment extends Fragment {
 
     private static final String PREF_KEY = "user_learned_drawer";
@@ -28,7 +24,6 @@ public class NavigationDrawerFragment extends Fragment {
     private boolean mFromSavedInstence;
     private View containerFragment;
     public NavigationDrawerFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -43,9 +38,8 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.activity_al_ict_fragment_navigation_drawer, container, false);
     }
 
