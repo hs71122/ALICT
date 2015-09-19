@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.freethemalloc.alict.R;
-import org.freethemalloc.alict.Lesson;
+import org.freethemalloc.activity.Lesson;
 import org.freethemalloc.model.MenuModel;
 
 import java.util.List;
@@ -35,7 +35,7 @@ public class LessonMenuAdapter extends RecyclerView.Adapter<LessonMenuAdapter.Me
 
     @Override
     public MenuItem onCreateViewHolder(ViewGroup parent, int viewType) {
-        View menuView = LayoutInflater.from(parent.getContext()).inflate(R.layout.lesson_menu,parent,false);
+        View menuView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_al_ict_lesson_menu,parent,false);
         MenuItem menuItem = new MenuItem(menuView);
         clickListener = new View.OnClickListener() {
             @Override

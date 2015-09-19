@@ -1,4 +1,4 @@
-package org.freethemalloc.alict;
+package org.freethemalloc.activity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 
+import org.freethemalloc.alict.R;
 import org.freethemalloc.comman.LessonLayoutGenerator;
 import org.freethemalloc.lessons.Lessons;
 
@@ -33,7 +34,7 @@ public class Lesson extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lesson_layout);
+        setContentView(R.layout.activity_lesson_layout);
         toolbar = (Toolbar) findViewById(R.id.lesson_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -49,7 +50,7 @@ public class Lesson extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the drawer_menu; this adds items to the action bar if it is present.
+        // Inflate the activity_al_ict_drawer_menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_al_ict, menu);
         return true;
     }

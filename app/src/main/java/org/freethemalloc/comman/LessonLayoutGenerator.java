@@ -45,7 +45,7 @@ public class LessonLayoutGenerator {
 
     private CardView getCardView(){
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        return (CardView)inflater.inflate(R.layout.lesson_container_layout, container,false);
+        return (CardView)inflater.inflate(R.layout.activity_lesson_container_layout, container,false);
     }
     public LinearLayout generate(LinkedHashMap map){
         Set set = map.entrySet();

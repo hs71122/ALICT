@@ -27,7 +27,7 @@ public class DrawerMenuAdapter extends RecyclerView.Adapter<DrawerMenuAdapter.Me
     }
     @Override
     public MenuItem onCreateViewHolder(ViewGroup parent, int viewType) {
-        View menuView = LayoutInflater.from(parent.getContext()).inflate(R.layout.drawer_menu,parent,false);
+        View menuView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_al_ict_drawer_menu,parent,false);
         MenuItem menuItem = new MenuItem(menuView);
         clickListener = new View.OnClickListener() {
             @Override
