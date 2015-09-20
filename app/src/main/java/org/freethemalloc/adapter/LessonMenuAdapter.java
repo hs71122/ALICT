@@ -9,7 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.balysv.materialripple.MaterialRippleLayout;
 
 import org.freethemalloc.alict.R;
 import org.freethemalloc.activity.Lesson;
@@ -34,15 +37,14 @@ public class LessonMenuAdapter extends RecyclerView.Adapter<LessonMenuAdapter.Me
     }
 
     @Override
-    public MenuItem onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MenuItem onCreateViewHolder(final ViewGroup parent, int viewType) {
         View menuView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_al_ict_lesson_menu,parent,false);
         MenuItem menuItem = new MenuItem(menuView);
         clickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, Lesson.class);
-                String tag = (view.getTag().toString());
-                intent.putExtra("lesson", tag);
+                intent.putExtra("lesson", view.getTag().toString());
                 context.startActivity(intent);
             }
         };
@@ -52,8 +54,8 @@ public class LessonMenuAdapter extends RecyclerView.Adapter<LessonMenuAdapter.Me
     @Override
     public void onBindViewHolder(MenuItem holder, int position) {
 
-        holder.cardView.setTag(menuList.get(position).getTag());
-        holder.cardView.setOnClickListener(clickListener);
+        holder.linearLayout.setTag(menuList.get(position).getTag());
+        holder.linearLayout.setOnClickListener(clickListener);
         if(menuList.get(position).getImage() != null) {
             holder.imageView.setImageResource(Integer.parseInt(menuList.get(position).getImage()));
         }else {
@@ -72,16 +74,16 @@ public class LessonMenuAdapter extends RecyclerView.Adapter<LessonMenuAdapter.Me
 
     public static class MenuItem extends RecyclerView.ViewHolder {
 
-        CardView cardView;
         ImageView imageView;
         TextView title;
         TextView header;
+        LinearLayout linearLayout;
         public MenuItem(View itemView) {
             super(itemView);
-            cardView = (CardView) itemView.findViewById(R.id.menu);
             imageView = (ImageView) itemView.findViewById(R.id.sample_icon);
             title = (TextView) itemView.findViewById(R.id.title);
             header = (TextView) itemView.findViewById(R.id.header);
+            linearLayout = (LinearLayout) itemView.findViewById(R.id.innerLayout);
         }
     }
 }

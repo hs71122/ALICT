@@ -67,6 +67,7 @@ public class NavigationDrawerFragment extends Fragment {
         if (!mUserLearnedDrawer && !mFromSavedInstence){
             drawerLayout.openDrawer(this.containerFragment);
         }
+        drawerToggle.setDrawerIndicatorEnabled(true);
         drawerLayout.setDrawerListener(drawerToggle);
         drawerLayout.post(new Runnable() {
             @Override

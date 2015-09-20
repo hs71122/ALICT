@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/parent"
+    android:tag="parent">
 
     <android.support.v7.widget.CardView
         android:id="@+id/menu"
@@ -11,12 +13,21 @@
         android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground">
 
+        <com.balysv.materialripple.MaterialRippleLayout
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/ripple"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:mrl_rippleColor="@color/HThemePrimaryColor"
+            app:mrl_rippleDuration="500"
+            app:mrl_rippleFadeDuration="100">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="5dp"
             android:orientation="horizontal"
-            android:weightSum="100">
+            android:weightSum="100"
+            android:id="@+id/innerLayout">
 
             <ImageView
                 android:id="@+id/sample_icon"
@@ -49,5 +60,6 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </LinearLayout>
         </LinearLayout>
+        </com.balysv.materialripple.MaterialRippleLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>
