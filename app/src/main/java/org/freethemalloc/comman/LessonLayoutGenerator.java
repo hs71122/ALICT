@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.freethemalloc.alict.R;
-import org.freethemalloc.lessons.Lessons;
+import org.freethemalloc.model.Lessons;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -19,18 +19,17 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Generate a card view for lessons
+ * Generate a list if {@link CardView} for lessons as {@link LinearLayout}
  *
  */
 public class LessonLayoutGenerator {
 
-    //private CardView cardView; //inflated card view
     private LinearLayout container; //parent liner layout of the creating card view
     private Context context;
+
     /**
-     * Generate a card view for lessons
      *
-     * @param context Context of the activity
+     * @param context {@link Context}Context of the activity
      */
     public LessonLayoutGenerator(Context context){
         this.context = context;
@@ -43,10 +42,22 @@ public class LessonLayoutGenerator {
 
     }
 
+    /**
+     *Generate {@link CardView} from the layout of the <b>org.freethemalloc.alict.R.layout.activity_lesson_container_layout</b>
+     * @return {@link CardView}
+     */
     private CardView getCardView(){
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         return (CardView)inflater.inflate(R.layout.activity_lesson_container_layout, container,false);
     }
+
+    /**
+     *Generate {@link LinearLayout} for the given {@link LinkedHashMap}.
+     *This method generate {@link CardView}s for each element in the {@link LinkedHashMap}
+     * and append those {@link CardView}s to a {@link LinearLayout}.
+     * @param map {@link LinkedHashMap}
+     * @return {@link LinearLayout}
+     */
     public LinearLayout generate(LinkedHashMap map){
         Set set = map.entrySet();
         Iterator iterator = set.iterator();
@@ -70,7 +81,16 @@ public class LessonLayoutGenerator {
         return this.container;
     }
 
-    private TextView textViewGenerator(String description, int size,CardView cv){
+    /**
+     * Generate {@link TextView}s for the given text, format the text-size for the given size
+     *  and also this method set appropriate background color for the given CardView.
+     *  Generating {@link TextView}'s {@link Typeface} also changes to "iskoolaPota.ttf"
+     * @param description {@link String} text for the generating {@link TextView}
+     * @param size {@link Integer} value for the text-size of generating {@link TextView}
+     * @param cardView {@link CardView} which is need to change background color - {@link android.graphics.Color}
+     * @return {@link TextView}
+     */
+    private TextView textViewGenerator(String description, int size,CardView cardView){
         TextView textView = new TextView(context);
         Typeface font = Typeface.createFromAsset(context.getAssets(), "iskoolaPota.ttf");
         textView.setTypeface(font);
@@ -80,28 +100,28 @@ public class LessonLayoutGenerator {
             textView.setTextColor(context.getResources().getColor(R.color.HThemeTxtColorPrimary));
             textView.setBackgroundColor(color);
             textView.setGravity(Gravity.CENTER_HORIZONTAL);
-            cv.setCardBackgroundColor(color);
-            cv.setCardElevation(10);
+            cardView.setCardBackgroundColor(color);
+            cardView.setCardElevation(10);
             lParams.setMargins(0, 0, 0, 5);
         }else if(size == Lessons.HEADER_LEVEL_2){
             textView.setTextColor(context.getResources().getColor(R.color.HThemeTxtColorPrimary));
             textView.setBackgroundColor(color);
             textView.setGravity(Gravity.CENTER_HORIZONTAL);
-            cv.setCardBackgroundColor(color);
-            cv.setCardElevation(5);
+            cardView.setCardBackgroundColor(color);
+            cardView.setCardElevation(5);
             lParams.setMargins(0, 0, 0, 5);
         }else if(size == Lessons.HEADER_LEVEL_3){
             textView.setTextColor(context.getResources().getColor(R.color.HThemeTxtColorPrimary));
             textView.setBackgroundColor(color);
             textView.setGravity(Gravity.CENTER_HORIZONTAL);
-            cv.setCardBackgroundColor(color);
-            cv.setCardElevation(2);
+            cardView.setCardBackgroundColor(color);
+            cardView.setCardElevation(2);
             lParams.setMargins(0, 0, 0, 5);
         }else if(size == Lessons.HEADER_LEVEL_4){
             textView.setTextColor(context.getResources().getColor(R.color.HThemeTxtColorPrimary));
             textView.setBackgroundColor(color);
             textView.setGravity(Gravity.CENTER_HORIZONTAL);
-            cv.setCardBackgroundColor(color);
+            cardView.setCardBackgroundColor(color);
             lParams.setMargins(0, 0, 0, 5);
         }else if(size == Lessons.DESCRIPTION){
             textView.setTextColor(context.getResources().getColor(R.color.HThemeFontDescription));
@@ -122,6 +142,11 @@ public class LessonLayoutGenerator {
         return textView;
     }
 
+    /**
+     * Generate {@link ImageView}for the given image ID
+     * @param image {@link String} String representation of image's {@link Integer} ID
+     * @return {@link ImageView}
+     */
     private ImageView imageViewGenerator(String image) {
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(Integer.parseInt(image));

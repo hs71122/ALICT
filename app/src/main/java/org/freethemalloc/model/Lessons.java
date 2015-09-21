@@ -1,7 +1,6 @@
-package org.freethemalloc.lessons;
+package org.freethemalloc.model;
 
 import org.freethemalloc.alict.R;
-import org.freethemalloc.model.MenuModel;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -15,6 +14,12 @@ import java.util.Set;
 
 /**
  * Created by Harshana @freethemalloc.blogspot.com on 7/27/2015.
+ */
+
+/**
+ * A class which is provide lesson details. This class contain set of <b>{@link LinkedHashMap }</b>
+ * and all the <b>{@link LinkedHashMap }</b>  of the lessons details can get By calling {@link static}
+ * methods od class
  */
 public class Lessons {
 
@@ -42,11 +47,11 @@ public class Lessons {
 
 
     /**
-     * Generate a <b>LinkedHashMap object</b> with given values
+     * Generate a <b>{@link LinkedHashMap} object</b> with given values
      *
-     * @param key   Key for the map
-     * @param value value for the map
-     * @return HashMap<Integer,String>()
+     * @param key   {@link int} Key for the map
+     * @param value {@link String}value for the map
+     * @return {@link HashMap }
      */
     private static HashMap<Integer, String> hashMapGenerator(int key, String value) {
         HashMap<Integer, String> newHashMap = new HashMap<>();
@@ -57,7 +62,7 @@ public class Lessons {
     /**
      * Get the lesson 01 details as a HashMap object
      *
-     * @return LinkedHashMap
+     * @return {@link LinkedHashMap }<{@link Integer },{@link HashMap}<{@link Integer},{@link String}>>
      */
     public static LinkedHashMap<Integer, HashMap<Integer, String>> getLesson01() {
         LESSON_01 = new LinkedHashMap<>();
@@ -115,6 +120,11 @@ public class Lessons {
         return LESSON_01;
     }
 
+    /**
+     * Get the lesson 02 details as a HashMap object
+     *
+     * @return {@link LinkedHashMap }<{@link Integer },{@link HashMap}<{@link Integer},{@link String}>>
+     */
     public static LinkedHashMap<Integer, HashMap<Integer, String>> getLesson02() {
         LESSON_02 = new LinkedHashMap<>();
         LESSON_02.put(1, hashMapGenerator(HEADER_LEVEL_1, "දත්ත හා තොරතුරු නිර්මාණය, බෙදාහැරීම සහ කළමනාකරණය සඳහා තාක්ෂණයේ අවශ්\u200Dයතාව (The need of technology to create, disseminate and manage data and information) "));
@@ -136,6 +146,11 @@ public class Lessons {
         return LESSON_02;
     }
 
+    /**
+     * Get the lesson 03 details as a HashMap object
+     *
+     * @return {@link LinkedHashMap }<{@link Integer },{@link HashMap}<{@link Integer},{@link String}>>
+     */
     public static LinkedHashMap<Integer, HashMap<Integer, String>> getLesson03() {
         LESSON_03 = new LinkedHashMap<>();
         LESSON_03.put(1, hashMapGenerator(HEADER_LEVEL_1, "තොරතුරු වල වියුක්ත ආකෘතිය හා එහි වැදගත්කම(Abstract Model of Information) "));
@@ -152,6 +167,11 @@ public class Lessons {
         return LESSON_03;
     }
 
+    /**
+     * Get the lesson 04 details as a HashMap object
+     *
+     * @return {@link LinkedHashMap }<{@link Integer },{@link HashMap}<{@link Integer},{@link String}>>
+     */
     public static LinkedHashMap<Integer, HashMap<Integer, String>> getLesson04() {
         LESSON_04 = new LinkedHashMap<>();
         LESSON_04.put(1, hashMapGenerator(HEADER_LEVEL_1, "පරිගණක පද්ධතියක මූලික සංරචක (Basic Components of the Computer System)"));
@@ -169,6 +189,11 @@ public class Lessons {
         return LESSON_04;
     }
 
+    /**
+     * Get the lesson 05 details as a HashMap object
+     *
+     * @return {@link LinkedHashMap }<{@link Integer },{@link HashMap}<{@link Integer},{@link String}>>
+     */
     public static LinkedHashMap<Integer, HashMap<Integer, String>> getLesson05() {
 
         LESSON_05 = new LinkedHashMap<>();
@@ -181,6 +206,11 @@ public class Lessons {
         return LESSON_05;
     }
 
+    /**
+     * Get the lesson 06 details as a HashMap object
+     *
+     * @return {@link LinkedHashMap }<{@link Integer },{@link HashMap}<{@link Integer},{@link String}>>
+     */
     public static LinkedHashMap<Integer, HashMap<Integer, String>> getLesson06() {
         LESSON_06 = new LinkedHashMap<>();
         LESSON_06.put(1, hashMapGenerator(HEADER_LEVEL_1, "ආයතනයන්හි විවිධ යෙදුම් ක්\u200Dෂේත්\u200Dර වල තොරතුරු හා සන්නිවේදන තාක්\u200Dෂණය භාවිතය\u200B (Investigates the use of ICT in different field of applications in organizations)"));
@@ -242,7 +272,11 @@ public class Lessons {
         return LESSON_06;
     }
 
-    public static List getLessonList() {
+    /**
+     * Get the list of lesson details as list of MenuModel
+     * @return {@link List}<{@link MenuModel}>
+     */
+    public static List<MenuModel> getLessonList() {
 
 
         List<MenuModel> list = new ArrayList<>();

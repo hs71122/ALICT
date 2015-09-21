@@ -10,56 +10,58 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 
-import org.freethemalloc.adapter.DrawerMenuAdapter;
 import org.freethemalloc.adapter.LessonMenuAdapter;
 import org.freethemalloc.alict.R;
 import org.freethemalloc.fragment.NavigationDrawerFragment;
-import org.freethemalloc.lessons.Lessons;
+import org.freethemalloc.model.Lessons;
 import org.freethemalloc.model.MenuModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class AlIct extends AppCompatActivity {
 
     private Toolbar toolbar;
-    RecyclerView rv ;
+    RecyclerView lessonRecyclerView;
     LinearLayout linearLayout;
+    private DrawerLayout drawerLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_al_ict_layout);
-        toolbar = (Toolbar)findViewById(R.id.app_bar);
-        linearLayout = (LinearLayout)findViewById(R.id.mainCont);
+        initialize();
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
-        drawerFragment.setup(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
 
-        rv = (RecyclerView)findViewById(R.id.rv);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        rv.setLayoutManager(layoutManager);
-        DrawerMenuAdapter adapter = new DrawerMenuAdapter(this,makeDrawerMenu());
-        rv.setAdapter(adapter);
+        NavigationDrawerFragment drawerFragment;
+        drawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
+        drawerFragment.setUp(R.id.fragment_navigation_drawer, drawerLayout, toolbar);
+        setUpLessonRecyclerView();
+    }
 
-        RecyclerView rvLessonMenu = (RecyclerView)findViewById(R.id.rvLessonMenu);
+    /**
+     * setup the drawer menu
+     */
+    private void setUpLessonRecyclerView() {
         LinearLayoutManager lessonMenuLayoutManager = new LinearLayoutManager(this);
-        rvLessonMenu.setLayoutManager(lessonMenuLayoutManager);
+        lessonRecyclerView.setLayoutManager(lessonMenuLayoutManager);
         List<MenuModel> menuModelList = Lessons.getLessonList();
         LessonMenuAdapter lessonMenuAdapter = new LessonMenuAdapter(this,menuModelList);
-        rvLessonMenu.setAdapter(lessonMenuAdapter);
+        lessonRecyclerView.setAdapter(lessonMenuAdapter);
     }
 
-    private List<MenuModel> makeDrawerMenu(){
-
-        List<MenuModel> list = new ArrayList<>();
-        list.add(new MenuModel("ICT පාඩම් මාලාව","ICT Lessons","",  String.valueOf(R.drawable.lesson)));
-        list.add(new MenuModel("Python පාඩම් මාලාව","Python Lessons","",  String.valueOf(R.drawable.python_logo)));
-        list.add(new MenuModel("Database පාඩම් මාලාව","Database Lessons","",  String.valueOf(R.drawable.icon_database)));
-        return list;
+    /**
+     * initialize the variable from the layout
+     */
+    private void initialize() {
+        toolbar = (Toolbar)findViewById(R.id.app_bar);
+        linearLayout = (LinearLayout)findViewById(R.id.mainCont);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        lessonRecyclerView = (RecyclerView)findViewById(R.id.rvLessonMenu);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_al_ict, menu);
@@ -73,7 +75,6 @@ public class AlIct extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

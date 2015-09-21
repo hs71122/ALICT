@@ -11,4 +11,5 @@
     <color name="HThemeFontHeader_4">#c5cae9</color>
     <color name="HThemeFontDescription">#263238</color>
     <color name="HThemeFontDescriptionList">#607d8b</color>
+    <color name="dividerColor">#F5F5F5</color>
 </resources>

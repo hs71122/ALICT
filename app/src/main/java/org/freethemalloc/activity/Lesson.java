@@ -13,7 +13,7 @@ import android.widget.ScrollView;
 
 import org.freethemalloc.alict.R;
 import org.freethemalloc.comman.LessonLayoutGenerator;
-import org.freethemalloc.lessons.Lessons;
+import org.freethemalloc.model.Lessons;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;

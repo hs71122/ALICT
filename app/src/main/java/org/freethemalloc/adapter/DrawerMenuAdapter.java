@@ -2,12 +2,12 @@ package org.freethemalloc.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,7 +52,7 @@ public class DrawerMenuAdapter extends RecyclerView.Adapter<DrawerMenuAdapter.Me
         holder.header.setText(menuList.get(position).getHeader());
         holder.title.setText(menuList.get(position).getTitle());
         holder.imageView.setImageResource(Integer.parseInt(menuList.get(position).getImage()));
-        holder.cardView.setOnClickListener(clickListener);
+        holder.linearLayout.setOnClickListener(clickListener);
     }
 
     @Override
@@ -65,10 +65,10 @@ public class DrawerMenuAdapter extends RecyclerView.Adapter<DrawerMenuAdapter.Me
         ImageView imageView;
         TextView header;
         TextView title;
-        CardView cardView;
+        LinearLayout linearLayout;
         public MenuItem(View itemView) {
             super(itemView);
-            cardView = (CardView) itemView.findViewById(R.id.menu);
+            linearLayout = (LinearLayout) itemView.findViewById(R.id.menu);
             header = (TextView) itemView.findViewById(R.id.header);
             title = (TextView) itemView.findViewById(R.id.title);
             imageView = (ImageView)itemView.findViewById(R.id.icon);
